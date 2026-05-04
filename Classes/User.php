@@ -12,15 +12,15 @@ class User {
         $this->conn = $db;
     }
 
-    // Check if username exists and verify password
     public function login($username, $password) {
+       
         $query = "SELECT id, username, password, full_name FROM " . $this->table_name . " WHERE username = ? LIMIT 0,1";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([$username]);
         
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($row && password_verify($password, $row['password'])) {
+        
+        if ($row && $password == $row['password']) {
             $this->id = $row['id'];
             $this->full_name = $row['full_name'];
             return true;
