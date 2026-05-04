@@ -10,8 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_order'])) {
     $customer_id = $_POST['customer_id'];
     $product_name = $_POST['product_name'];
     $amount = $_POST['amount'];
-    $user_id = $_SESSION['user_id']; // DYNAMIC: Kukunin ang ID ng sino ang naka-login
-
+    $user_id = $_SESSION['user_id'];
     $query = "INSERT INTO orders (customer_id, product_name, amount, user_id, order_date) 
               VALUES (:customer_id, :product_name, :amount, :user_id, NOW())";
     $stmt = $db->prepare($query);
