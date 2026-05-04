@@ -1,9 +1,10 @@
 <?php
 class Database {
-    private $host = "localhost";
-    private $db_name = "smart_order_system";
-    private $username = "root";
-    private $password = "";
+    
+    private $host = "sql208.infinityfree.com";
+    private $db_name = "if0_41769083_orders"; 
+    private $username = "if0_41769083";
+    private $password = "Gundamacalalad7"; 
     public $conn;
 
     public function getConnection() {
