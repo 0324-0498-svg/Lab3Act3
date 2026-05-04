@@ -13,13 +13,14 @@ class User {
     }
 
     public function login($username, $password) {
-       
+        // We ensure only existing columns are selected
         $query = "SELECT id, username, password, full_name FROM " . $this->table_name . " WHERE username = ? LIMIT 0,1";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([$username]);
         
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+
+        // Compare plain text passwords
         if ($row && $password == $row['password']) {
             $this->id = $row['id'];
             $this->full_name = $row['full_name'];
