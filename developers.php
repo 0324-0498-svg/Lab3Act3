@@ -6,7 +6,6 @@ require_once 'classes/Database.php';
 $database = new Database();
 $db = $database->getConnection();
 
-// --- 1. DELETE LOGIC ---
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
     $delete_query = "DELETE FROM customers WHERE id = :id";
@@ -18,7 +17,6 @@ if (isset($_GET['delete'])) {
     }
 }
 
-// --- 2. ADD LOGIC ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_customer'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -28,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_customer'])) {
     header("Location: customers.php");
 }
 
-// --- 3. EDIT LOGIC ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_customer'])) {
     $id = $_POST['customer_id'];
     $name = $_POST['name'];
@@ -116,7 +113,6 @@ $stmt->execute();
     </main>
 </div>
 
-<!-- ADD MODAL -->
 <div class="modal fade" id="addCustomerModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -132,7 +128,6 @@ $stmt->execute();
   </div>
 </div>
 
-<!-- EDIT MODAL -->
 <div class="modal fade" id="editCustomerModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -150,7 +145,7 @@ $stmt->execute();
 </div>
 
 <script>
-// Script para kusa mapunan ang Edit Modal base sa kung anong row ang pinindot
+
 const editButtons = document.querySelectorAll('.edit-btn');
 editButtons.forEach(btn => {
     btn.addEventListener('click', () => {
