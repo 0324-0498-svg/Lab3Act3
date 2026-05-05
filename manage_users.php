@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Proteksyon: Admin lang ang pwedeng pumasok dito
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') { 
     header("Location: dashboard.php"); 
     exit; 
@@ -9,14 +8,13 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 require_once 'classes/Database.php';
 $database = new Database();
 $db = $database->getConnection();
-
-// --- LOGIC PARA SA HARD DELETE ---
+ 
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
     
-    // Hindi pwedeng burahin ng admin ang sarili niyang account
+     
     if ($id != $_SESSION['user_id']) {
-        // Kapag binura ito, madadamay lahat ng orders dahil sa ON DELETE CASCADE sa database
+         
         $stmt = $db->prepare("DELETE FROM users WHERE id = :id");
         $stmt->execute(['id' => $id]);
         header("Location: manage_users.php?msg=deleted");
