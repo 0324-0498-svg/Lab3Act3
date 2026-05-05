@@ -6,8 +6,7 @@ require_once 'classes/Database.php';
 $database = new Database();
 $db = $database->getConnection();
 $role = $_SESSION['role'] ?? 'staff';
-
-// --- SUMMARY DATA ---
+ 
 $summary_query = "SELECT 
                     COUNT(id) as total_orders, 
                     SUM(amount) as total_revenue 
@@ -15,8 +14,7 @@ $summary_query = "SELECT
 $summary_stmt = $db->prepare($summary_query);
 $summary_stmt->execute();
 $summary = $summary_stmt->fetch(PDO::FETCH_ASSOC);
-
-// --- STAFF PERFORMANCE (ORDERED HIGHEST TO LOWEST) ---
+ 
 $staff_query = "SELECT 
                     u.full_name, 
                     COUNT(o.id) as orders_handled, 
