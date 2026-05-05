@@ -19,7 +19,7 @@ if (isset($_GET['delete_id'])) {
         exit;
     }
 }
-
+ 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_order'])) {
     $customer_id = $_POST['customer_id'];
     $product_name = $_POST['product_name'];
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_order'])) {
         exit;
     }
 }
-
+ 
 $cust_stmt = $db->query("SELECT id, name FROM customers ORDER BY name ASC");
 $customers = $cust_stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -163,6 +163,7 @@ $stmt = $db->query($query);
     </main>
 </div>
 
+ 
 <div class="modal fade" id="addOrderModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="border-radius: 15px;">
